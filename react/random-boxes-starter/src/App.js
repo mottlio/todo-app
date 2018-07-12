@@ -18,6 +18,14 @@ class App extends Component {
     super(props);
     const boxes = Array(NUM_BOXES).fill().map(this.getRandomColor, this);
     this.state = {boxes};
+
+    setInterval(() => {
+      //first, make a copy of the boxes array using slice with no arguments
+      const boxes = this.state.boxes.slice();
+      const randIndex = Math.floor(Math.random()*boxes.length);
+      boxes[randIndex] = this.getRandomColor();
+      this.setState({boxes});
+    }, 300)
   }
 
   getRandomColor(){
